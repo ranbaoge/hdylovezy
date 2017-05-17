@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>OA</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+   <!-- 配置spring监听 -->
+  <listener>
+       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+     </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext*.xml</param-value>
+  </context-param>
+  
+  <!-- 配置springmvc前端控制器 -->
+  <servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	
+	 <!-- spring字符编码过滤器start-->
+	  <filter>
+		<!--① Spring 编码过滤器 -->
+	  <filter-name>encodingFilter</filter-name>
+	  <filter-class>
+	      org.springframework.web.filter.CharacterEncodingFilter
+	  </filter-class>
+	  <!--② 编码方式  -->
+	  <init-param> 
+	      <param-name>encoding</param-name>
+	      <param-value>UTF-8</param-value>
+	  </init-param>
+	  <!--③ 强制进行编码转换 -->
+	  <init-param>
+	      <param-name>forceEncoding</param-name>
+	      <param-value>true</param-value>
+	  </init-param>
+	 </filter>
+	 <!-- ② 过滤器的匹配 URL -->
+	   <filter-mapping> 
+	       <filter-name>encodingFilter</filter-name>
+	       <url-pattern>/*</url-pattern>
+	   </filter-mapping>
+	   
+	   
+    <!-- log4j配置start -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	<context-param>
+	<!-- 指定系统根目录路径 -->
+	    <param-name>webAppRootKey</param-name>
+	    <param-value>SMBMMVC.root</param-value>
+	</context-param>
+	<!-- Spring 加载 Log4j 的监听 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.util.Log4jConfigListener
+		</listener-class>
+	</listener>
+</web-app>

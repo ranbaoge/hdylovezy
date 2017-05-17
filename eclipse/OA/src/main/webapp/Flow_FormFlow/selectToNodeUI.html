@@ -1,0 +1,70 @@
+<html>
+<head>
+	<title>退文</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script language="javascript" src="../script/jquery.js"></script>
+    <script language="javascript" src="../script/pageCommon.js" charset="utf-8"></script>
+    <script language="javascript" src="../script/PageUtils.js" charset="utf-8"></script>
+    <script language="javascript" src="../script/DemoData.js" charset="utf-8"></script>
+	<script language="javascript" src="../script/DataShowManager.js" charset="utf-8"></script>
+    <link type="text/css" rel="stylesheet" href="../style/blue/pageCommon.css" />
+	<script type="text/javascript">
+		// 执行选择
+		function selectAndClose( toNodeId ){
+			var win = window.dialogArguments;
+			// win.document.forms[0].toNodeId.value = toNodeId;
+			// win.document.forms[0].method.value = "sendBack";
+			$(win.document.forms[0]).submit();
+			window.close();
+		}
+    </script>
+	<base target="_self" />
+</head>
+<body>
+
+<!-- 标题显示 -->
+<div id="Title_bar">
+    <div id="Title_bar_Head">
+        <div id="Title_Head"></div>
+        <div id="Title"><!--页面标题-->
+            <img border="0" width="13" height="13" src="../style/images/title_arrow.gif"/> 回退
+        </div>
+        <div id="Title_End"></div>
+    </div>
+</div>
+
+<!--显示表单内容-->
+<div id=MainArea>
+    <form action="myTaskList.html">
+		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title1">
+        	<img border="0" width="4" height="7" src="../style/blue/images/item_point.gif" /> 请选择要回退到的步骤 </div> 
+        </div>
+		
+        <div class="ItemBlockBorder">
+            <div class="ItemBlock">
+				<table cellpadding="0" cellspacing="0" class="mainForm">
+					<tr><td align="center"><a href="javascript: selectAndClose(1)">申请人</a></td></tr>
+					<tr><td align="center">&#8595;</td></tr>
+					<tr><td align="center"><a href="javascript: selectAndClose(2)">部门经理</a></td></tr>
+					<tr><td align="center">&#8595;</td></tr>
+					<tr><td align="center" class="red">总经理</td></tr>
+				</table>
+			</div>
+		</div> 
+        
+		<!-- 表单操作 -->
+        <div id="InputDetailBar">
+            <a href="javascript:window.close();"><img src="../style/blue/images/button/close.png"/></a>
+        </div>
+    </form>
+</div>
+
+<div class="Description">
+	说明：<br />
+	1，列表为：表单流经的环节，和当前环节（最后一个，红色显示）。<br />
+	2，只能选择当前环节前的环节（即回退到之前的某一个环节）。<br />
+	3，选择要回退到的环 节的方法是 直接点击相应环节的名称。<br />
+</div>
+
+</body>
+</html>

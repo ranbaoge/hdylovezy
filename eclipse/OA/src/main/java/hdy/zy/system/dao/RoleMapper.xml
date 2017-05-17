@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdy.zy.system.dao.RoleMapper" >
+  <resultMap id="roleMap" type="Role" >
+    <id column="r_id" property="id" jdbcType="BIGINT" />
+    <result column="r_name" property="name" jdbcType="VARCHAR" />
+    <result column="r_description" property="description" jdbcType="VARCHAR" />
+    <result column="r_user_id" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <!-- 通过ID删除角色 -->
+  <delete id="deleteRoleById" parameterType="long" >
+    delete from t_role
+    where r_id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 添加角色信息 -->
+  <insert id="saveRole" parameterType="Role" >
+    insert into t_role (r_name, r_description, 
+      r_user_id)
+    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=BIGINT})
+  </insert>
+ 
+ <!-- 修改角色 -->
+  <update id="updateRole" parameterType="Role" >
+    update t_role
+    <set >
+      <if test="name != null" >
+        r_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        r_description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        r_user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where r_id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 分页查询角色信息 -->
+  <select id="queryAllByPage" parameterType="map" resultMap="roleMap">
+     select * from t_role where r_id limit #{from},#{pageSize}
+  </select>  
+  
+  <!-- 查询角色表总记录数 -->
+  <select id="count" resultType="long">
+     select count(1) from t_role;
+ </select>
+  
+</mapper>

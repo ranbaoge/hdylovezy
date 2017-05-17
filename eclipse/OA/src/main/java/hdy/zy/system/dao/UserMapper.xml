@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdy.zy.system.dao.UserMapper" >
+  <resultMap id="userMap" type="User" >
+    <id column="u_id" property="id" jdbcType="BIGINT" />
+    <result column="u_department_id" property="departmentId" jdbcType="BIGINT" />
+    <result column="u_loginName" property="loginname" jdbcType="VARCHAR" />
+    <result column="u_password" property="password" jdbcType="VARCHAR" />
+    <result column="u_name" property="name" jdbcType="VARCHAR" />
+    <result column="u_gender" property="gender" jdbcType="VARCHAR" />
+    <result column="u_phoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="u_email" property="email" jdbcType="VARCHAR" />
+    <result column="u_role_id" property="roleId" jdbcType="BIGINT" />
+    <association property="department" javaType="Department">
+        <id column="d_id" property="id" jdbcType="BIGINT" />
+        <result column="d_name" property="name" jdbcType="VARCHAR" />
+        <result column="d_description" property="description" jdbcType="VARCHAR" />
+        <result column="d_parentDepartment_id" property="parentdepartmentId" jdbcType="BIGINT" />
+    </association>
+    <collection property="roleSet" ofType="Role">
+        <id column="r_id" property="id" jdbcType="BIGINT" />
+        <result column="r_name" property="name" jdbcType="VARCHAR" />
+        <result column="r_description" property="description" jdbcType="VARCHAR" />
+        <result column="r_user_id" property="userId" jdbcType="BIGINT" />
+    </collection>
+  </resultMap>
+ 
+  
+  <!-- 根据用户ID查询 -->
+  <select id="queryUserById" resultMap="userMap" parameterType="long" >
+   select r.*,ud.* from t_role r right join (select u.*,d.* from t_user u inner join t_department d on u.u_department_id=d.d_id) ud 
+   on r.r_user_id=ud.u_role_id where ud.u_id=#{id}
+  </select>
+  
+  <!-- 根据ID删除 -->
+  <delete id="deleteUserById" parameterType="long" >
+    delete from t_user
+    where u_id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 添加用户信息 -->
+  <insert id="saveUser" parameterType="User">
+    insert into t_user (u_department_id, u_loginName, 
+      u_password, u_name, u_gender, 
+      u_phoneNumber, u_email, u_role_id
+      )
+    values (#{departmentId,jdbcType=BIGINT}, #{loginname,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{phonenumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}
+      )
+  </insert>
+  
+  <!-- 修改用户信息 -->
+  <update id="updateUser" parameterType="User" >
+    update t_user
+    <set >
+      <if test="departmentId != null" >
+        u_department_id = #{departmentId,jdbcType=BIGINT},
+      </if>
+      <if test="loginname != null" >
+        u_loginName = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        u_password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        u_name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        u_gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        u_phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        u_email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        u_role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where u_id = #{id,jdbcType=BIGINT}
+  </update>
+ 
+ <!-- 分页查询 -->
+ <select id="queryAllByPage" parameterType="map" resultMap="userMap">
+   select r.*,ud.* from t_role r right join (select u.*,d.* from t_user u inner join t_department d on u.u_department_id=d.d_id) ud on 
+   r.r_user_id=ud.u_role_id where 1=1 limit #{from},#{pageSize}
+ </select>
+ 
+ <!-- 分页模糊查询 -->
+ <select id="queryAllByLike" parameterType="map" resultMap="userMap">
+    select r.*,ud.* from t_role r right join (select u.*,d.* from t_user u inner join t_department d on u.u_department_id=d.d_id) ud on 
+   r.r_user_id=ud.u_role_id where ud.u_name like CONCAT('%',#{name},'%') limit #{from},#{pageSize}
+ </select>
+ 
+ <!-- 验证登录 -->
+ <select id="login" parameterType="User" resultMap="userMap">
+    select * from t_user where u_loginName=#{loginname} and u_password=#{password}
+ </select>
+ 
+ <!-- 查询用户表总记录数 -->
+ <select id="count" resultType="long">
+     select count(1) from t_user;
+ </select>
+ 
+ <!-- 管理员修改用户密码 -->
+ <update id="repassword" parameterType="map">
+     update t_user set
+     u_password=#{repassword} where
+     u_loginName=#{loginname} and u_password=#{password}
+ </update>
+ 
+</mapper>

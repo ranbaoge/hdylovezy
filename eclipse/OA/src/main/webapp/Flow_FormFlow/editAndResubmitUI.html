@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+	<TITLE>修改后再次提交</TITLE>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+	<SCRIPT LANGUAGE="javascript" SRC="../script/jquery.js"></SCRIPT>
+    <SCRIPT LANGUAGE="javascript" SRC="../script/pageCommon.js" CHARSET="utf-8"></SCRIPT>
+    <SCRIPT LANGUAGE="javascript" SRC="../script/PageUtils.js" CHARSET="utf-8"></SCRIPT>
+    <SCRIPT LANGUAGE="javascript" SRC="../script/DemoData.js" CHARSET="utf-8"></SCRIPT>
+	<SCRIPT LANGUAGE="javascript" SRC="../script/DataShowManager.js" CHARSET="utf-8"></SCRIPT>
+    <LINK TYPE="text/css" REL="stylesheet" HREF="../style/blue/pageCommon.css" />
+    <SCRIPT TYPE="text/javascript">
+    </SCRIPT>
+</HEAD>
+<BODY>
+
+<!-- 标题显示 -->
+<DIV ID="Title_bar">
+    <DIV ID="Title_bar_Head">
+        <DIV ID="Title_Head"></DIV>
+        <DIV ID="Title"><!--页面标题-->
+            <IMG BORDER="0" WIDTH="13" HEIGHT="13" SRC="../style/images/title_arrow.gif"/> 修改后再次提交
+        </DIV>
+        <DIV ID="Title_End"></DIV>
+    </DIV>
+</DIV>
+
+<!--显示表单内容-->
+<DIV ID=MainArea>
+    <FORM ACTION="../Globals/opSuccess.html">
+        <DIV CLASS="ItemBlock_Title1"><!-- 信息说明 --><DIV CLASS="ItemBlock_Title1">
+        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="../style/blue/images/item_point.gif" /> 相关信息 </DIV> 
+        </DIV>
+        <DIV CLASS="ItemBlockBorder">
+            <DIV CLASS="ItemBlock">
+                <TABLE CELLPADDING="0" CELLSPACING="0" CLASS="mainForm">
+					<TR>
+						<TD WIDTH=" 150px">
+							<A HREF="javascript:void(0)" STYLE="text-decoration: underline">[点击下载表单模板文档]</A>
+						</TD>
+						<TD><A HREF="javascript:void(0)" STYLE="text-decoration: underline">[点击下载申请文档]</A></TD>
+					</TR>
+                </TABLE>
+            </DIV>
+        </DIV>
+		
+		<DIV CLASS="ItemBlock_Title1"><!-- 信息说明 --><DIV CLASS="ItemBlock_Title1">
+        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="../style/blue/images/item_point.gif" /> 申请信息 </DIV> 
+        </DIV>
+        <DIV CLASS="ItemBlockBorder">
+            <DIV CLASS="ItemBlock">
+                <TABLE CELLPADDING="0" CELLSPACING="0" CLASS="mainForm">
+                    <TR>
+                        <TD WIDTH="138">请选择修改后的表单文件</TD>
+                        <TD><INPUT TYPE="file" NAME="resource" CLASS="InputStyle" STYLE="width:450px;" /> *</TD>
+                    </TR>
+                </TABLE>
+            </DIV>
+        </DIV>
+		
+        <!-- 表单操作 -->
+        <DIV ID="InputDetailBar">
+            <INPUT TYPE="image" SRC="../style/blue/images/button/submit.PNG"/>
+			<A HREF="javascript:history.go(-1);"><IMG SRC="../style/images/goBack.png"/></A>
+        </DIV>
+    </FORM>
+</DIV>
+
+<DIV CLASS="Description">
+</DIV>
+
+</BODY>
+</HTML>

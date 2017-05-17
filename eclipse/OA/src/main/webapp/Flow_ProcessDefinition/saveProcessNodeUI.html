@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+<TITLE>步骤设置</TITLE>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+	<SCRIPT LANGUAGE="javascript" SRC="../script/jquery.js"></SCRIPT>
+    <SCRIPT LANGUAGE="javascript" SRC="../script/pageCommon.js" CHARSET="utf-8"></SCRIPT>
+    <SCRIPT LANGUAGE="javascript" SRC="../script/PageUtils.js" CHARSET="utf-8"></SCRIPT>
+    <SCRIPT LANGUAGE="javascript" SRC="../script/DemoData.js" CHARSET="utf-8"></SCRIPT>
+	<SCRIPT LANGUAGE="javascript" SRC="../script/DataShowManager.js" CHARSET="utf-8"></SCRIPT>
+    <LINK TYPE="text/css" REL="stylesheet" HREF="../style/blue/pageCommon.css" />
+    <SCRIPT TYPE="text/javascript">
+    </SCRIPT>
+</HEAD>
+<BODY>
+
+<!-- 标题显示 -->
+<DIV ID="Title_bar">
+    <DIV ID="Title_bar_Head">
+        <DIV ID="Title_Head"></DIV>
+        <DIV ID="Title"><!--页面标题-->
+            <IMG BORDER="0" WIDTH="13" HEIGHT="13" SRC="../style/images/title_arrow.gif"/> 步骤设置
+        </DIV>
+        <DIV ID="Title_End"></DIV>
+    </DIV>
+</DIV>
+
+<!--显示表单内容-->
+<DIV ID=MainArea>
+    <FORM ACTION="list.html">
+        <DIV CLASS="ItemBlock_Title1"><!-- 信息说明 --><DIV CLASS="ItemBlock_Title1">
+        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="../style/blue/images/item_point.gif" /> 步骤基本属性 </DIV> 
+        </DIV>
+        
+        <!-- 表单内容显示 -->
+        <DIV CLASS="ItemBlockBorder">
+            <DIV CLASS="ItemBlock">
+                <TABLE CELLPADDING="0" CELLSPACING="0" CLASS="mainForm">
+                    <TR>
+                        <TD WIDTH="100">步骤名称</TD>
+                        <TD><INPUT TYPE="text" NAME="name" CLASS="InputStyle" /></TD>
+                    </TR>
+					<TR>
+                        <TD WIDTH="100">操作类型</TD>
+                        <TD><SELECT NAME="type" CLASS="SelectStyle">
+								<OPTION VALUE="1">审批</OPTION>
+								<OPTION VALUE="2">会签</OPTION>
+							</SELECT>
+						</TD>
+                    </TR>
+                </TABLE>
+            </DIV>
+        </DIV>
+        
+		<DIV CLASS="ItemBlock_Title1"><!-- 信息说明 --><DIV CLASS="ItemBlock_Title1">
+        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="../style/blue/images/item_point.gif" /> 审批人员设置 </DIV> 
+        </DIV>
+        
+        <!-- 表单内容显示 -->
+        <DIV CLASS="ItemBlockBorder">
+            <DIV CLASS="ItemBlock">
+                <TABLE CELLPADDING="0" CELLSPACING="0" CLASS="mainForm">
+                    <TR>
+                        <TD>选择人员</TD>
+                        <TD><INPUT TYPE="TEXT" NAME="userIdList" READONLY="TRUE" CLASS="InputStyle" STYLE="width: 300PX;"/>
+							<A HREF="javascript:void(0)"><IMG SRC="../style/blue/images/button/select.PNG" ALIGN="ABSMIDDLE"/></A>
+						</TD>
+                    </TR>
+					<TR>
+                        <TD>选择岗位</TD>
+                        <TD><INPUT TYPE="TEXT" NAME="roleIdList" READONLY="TRUE" CLASS="InputStyle" STYLE="width: 300PX;"/>
+							<A HREF="javascript:void(0)"><IMG SRC="../style/blue/images/button/select.PNG" ALIGN="ABSMIDDLE"/></A>
+						</TD>
+                    </TR>
+					<TR>
+                        <TD>设置多人评审方式</TD>
+                        <TD>
+							<INPUT TYPE="RADIO" NAME="approveType" ID="approveType1"/>
+								<LABEL FOR="approveType1">只要有一人通过审批即可向下流转</LABEL>
+							<INPUT TYPE="RADIO" NAME="approveType" ID="approveType2" CHECKED/>
+								<LABEL FOR="approveType2">只有全部人员都通过审批才可向下流转</LABEL>
+						</TD>
+                    </TR>
+                </TABLE>
+            </DIV>
+        </DIV>
+		
+        <!-- 表单操作 -->
+        <DIV ID="InputDetailBar">
+            <INPUT TYPE="image" SRC="../style/images/save.png"/>
+            <A HREF="javascript:history.go(-1);"><IMG SRC="../style/images/goBack.png"/></A>
+        </DIV>
+    </FORM>
+</DIV>
+
+<DIV CLASS="Description">
+	说明：<BR />
+	1，指定人员或岗位时，都是通过选择功能指定的，可以指定多个。<BR />
+	2，多人评审方式是指，如果指定的审批人有多个时，应是什么行为。<BR />
+</DIV>
+
+</BODY>
+</HTML>
