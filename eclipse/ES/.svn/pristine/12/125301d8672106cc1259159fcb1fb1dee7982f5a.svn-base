@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ClassDao" >
+  <resultMap id="classMap" type="UserClass" >
+    <id column="id" property="c_id" javaType="java.lang.Integer" />
+    <result column="name" property="c_name" javaType="java.lang.String" />
+    <collection property="userSet" ofType="User">
+       <id column="u_id" property="id" javaType="java.lang.Integer" />
+       <result column="u_username" property="username" javaType="java.lang.String" />
+       <result column="u_password" property="password" javaType="java.lang.String" />
+       <result column="u_truename" property="truename" javaType="java.lang.String" />
+       <result column="u_state" property="state" javaType="java.lang.String" />
+    </collection>
+  </resultMap>
+   
+   <!-- 根据id分页查询 -->
+   <select id="queryByClass" parameterType="map" resultMap="classMap">
+       select u.*,c.* from t_class c left join t_user u on c.id=u.u_classid where c.id=#{id} limit #{from},#{pageSize}
+   </select>
+ 
+  <!-- 查询总记录数 -->
+  <select id="count" resultType="int">
+      select count(1) from t_user where u_classid=#{id}
+  </select>
+  
+  
+ 
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserDao" >
+  <resultMap id="userMap" type="User" >
+    <id column="u_id" property="id" javaType="java.lang.Integer" />
+    <result column="u_username" property="username" javaType="java.lang.String" />
+    <result column="u_password" property="password" javaType="java.lang.String" />
+    <result column="u_truename" property="truename" javaType="java.lang.String" />
+    <result column="u_state" property="state" javaType="java.lang.String" />
+  </resultMap>
+   
+  <!-- 新增用户 -->
+  <insert id="saveUser" parameterType="User">
+       insert into t_user(u_username,u_password,u_truename) value(#{username},#{password},#{truename})
+  </insert>
+  
+  <!-- 修改用户密码 -->
+  <update id="updateUser" parameterType="map">
+        update t_user set u_password =#{password} where u_username=#{username}
+  </update>
+  
+  <!-- 删除用户 -->
+  <delete id="deleteUser" parameterType="int">
+      delete from t_user where u_id=#{id}
+  </delete>
+  
+  <!-- 分页查询 -->
+  <select id="queryByPage" parameterType="map" resultMap="userMap">
+      select * from t_user limit #{from},#{pageSize}
+  </select>
+  
+  <!-- 查询用户总记录条数 -->
+  <select id="count" resultType="int">
+      select count(1) from t_user
+  </select>
+  
+  <!-- 验证登录 -->
+  <select id="login" resultType="User" resultMap="userMap">
+      select * from t_user where u_username=#{username} and u_password=#{password}
+  </select>
+  
+  <!-- 修改作业提交状态 -->
+  <update id="updateState">
+      update t_user set u_state='完成' where u_username=#{username}
+  </update>
+  
+  <!-- 清空作业状态 -->
+  <update id="emptyState">
+      update t_user set u_state='未完成'
+  </update>
+ 
+</mapper>

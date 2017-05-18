@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<beans xmlns="http://www.springframework.org/schema/beans"   
+    xmlns:context="http://www.springframework.org/schema/context"   
+    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+    http://www.springframework.org/schema/mvc   
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">  
+
+    <!-- 1启动前端控制扫描 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!-- 2扫描控制层包路径 -->
+    <context:component-scan base-package="com.controller"/>
+    
+    <!-- 3启用静态资源 -->
+    <mvc:default-servlet-handler/>
+    
+    <!-- 3静态资源的访问 -->  
+    <!-- <mvc:resources location="/img/" mapping="/img/**"/>  
+    <mvc:resources location="/js/" mapping="/js/**"/>  --> 
+    
+    <!-- 视图解析器 -->  
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+           value="org.springframework.web.servlet.view.JstlView">
+        </property>  
+        <property name="prefix" value="/"/>  
+        <property name="suffix" value=".jsp"/>  
+    </bean>  
+    
+    <!-- 配置文件上传  MultipartResolver-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="500000000"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+    
+</beans> 
