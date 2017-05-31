@@ -11,6 +11,8 @@ public class Teacher implements Serializable {
 	
 	private Integer id;
 	private String name;
+	private IdCard idCard;
+	
 	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,6 +38,12 @@ public class Teacher implements Serializable {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public IdCard getIdCard() {
+		return idCard;
+	}
+	public void setIdCard(IdCard idCard) {
+		this.idCard = idCard;
 	}
 	@Override
 	public String toString() {

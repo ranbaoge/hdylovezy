@@ -21,6 +21,9 @@
             </id>
             <!-- 配置其他属性的映射 -->
             <property name="name" column="name" type="string"/>
+            
+            <!-- 配置一对一关联,t_id是关联关系的一个外键,unique使外键变成唯一   -->
+            <many-to-one name="idCard" column="c_id" class="IdCard" unique="true"/>
      </class>
 
 

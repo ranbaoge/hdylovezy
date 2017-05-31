@@ -5,7 +5,7 @@
 <!-- 学生类的映射 -->
 <hibernate-mapping package="com.huangdaye.HibernateDemo.entity">
      <!-- 配置JavaBean实体类和数据库表之间的映射关联 -->
-     <class name="Student" table="t_student">
+     <class name="IdCard" table="t_idcard">
             <!-- 配置主键生成策略 -->
             <id name="id" column="id" type="integer">
                 <!-- 主键生成策略一般取值
@@ -20,12 +20,10 @@
                 <generator class="native"/>
             </id>
             <!-- 配置其他属性的映射 -->
-            <property name="name" column="name" type="string"/>
-            <property name="gender" column="gender" type="string"/>
-            <property name="address" column="address" type="string"/>
+            <property name="no" column="no" type="string"/>
             
-            <!-- 配置多对一关联,t_id是关联关系的一个外键 -->
-            <many-to-one name="teacher" column="t_id" class="Teacher"/>
+            <!-- 配置一对一关联的另一半 ,property-ref表示引入类中属性-->
+            <one-to-one name="teacher" class="Teacher" property-ref="idCard"/>
      </class>
 
 

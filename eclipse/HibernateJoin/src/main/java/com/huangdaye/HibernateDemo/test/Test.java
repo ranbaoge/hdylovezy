@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
 
-import com.huangdaye.HibernateDemo.entity.Student;
+import com.huangdaye.HibernateDemo.entity.IdCard;
 import com.huangdaye.HibernateDemo.entity.Teacher;
 import com.huangdaye.HibernateDemo.tool.Tool;
 /**
@@ -39,25 +39,24 @@ public class Test {
 	
 	@org.junit.Test
 	public void save(){
-		Student stu=new Student("Leonhardt", "男", "湖南省常德市武陵区");
-		Teacher teacher=(Teacher) session.get(Teacher.class, 4);
-		stu.setTeacher(teacher);
-		session.save(stu);
+		Teacher t=new Teacher("张老师");
+		IdCard ic=new IdCard("87872832234");
+		t.setIdCard(ic);
+		session.save(ic);
+		session.save(t);
 	}
-	
-	
 	
 	/**
 	 * HQL查询，查询所有
 	 */
 	@org.junit.Test
 	public void queryAll(){
-		hql="from Student";
+		hql="from IdCard";
 		Query query=session.createQuery(hql);
 		@SuppressWarnings("unchecked")
-		List<Student> list= query.list();
-		for (Student s : list) {
-			System.out.println(s+"\t"+s.getTeacher());
+		List<IdCard> list=query.list();
+		for (IdCard ic : list) {
+			System.out.println(ic+"\t"+ic.getTeacher());
 		}
 	}
 	
