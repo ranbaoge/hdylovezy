@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 学生类的映射 -->
+<hibernate-mapping package="com.huangdaye.HibernateDemo.entity">
+     <!-- 配置JavaBean实体类和数据库表之间的映射关联 -->
+     <class name="Teacher" table="t_teacher">
+            <!-- 配置主键生成策略 -->
+            <id name="id" column="id" type="integer">
+                <!-- 主键生成策略一般取值
+                     1.assigned,用户自己自定义
+                     2.increment，mysql自增
+                     3.sequence,oracle序列
+                     4.identity,sqlserver自增
+                     5.native,根据数据库特性选择自增
+                     6.uuid,机器码作为主键自动生成
+                     7.guid,与uuid类似
+                     8.foreign，用于一对一，关联另一对象主键 -->
+                <generator class="native"/>
+            </id>
+            <!-- 配置其他属性的映射 -->
+            <property name="name" column="name" type="string"/>
+     </class>
+
+
+</hibernate-mapping>
