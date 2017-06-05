@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.role.dao.RoleMapper" >
+  <resultMap id="roleMap" type="com.role.entity.Role" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="roleCode" property="rolecode" jdbcType="VARCHAR" />
+    <result column="roleName" property="rolename" jdbcType="VARCHAR" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="creationDate" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="BIGINT" />
+    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="role" >
+    id, roleCode, roleName, createdBy, creationDate, modifyBy, modifyDate
+  </sql>
+ 
+ <!-- 删除角色 -->
+  <delete id="deleteRole" parameterType="java.lang.Long" >
+    delete from smbms_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 添加角色 -->
+  <insert id="saveRole" parameterType="com.role.entity.Role" >
+    insert into smbms_role (roleCode, roleName, 
+      createdBy, creationDate, modifyBy, 
+      modifyDate)
+    values (#{rolecode,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, 
+      #{createdby,jdbcType=BIGINT}, #{creationdate,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <!-- 更新角色 -->
+  <update id="updateRole" parameterType="com.role.entity.Role" >
+    update smbms_role
+    <set >
+      <if test="rolecode != null" >
+        roleCode = #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        roleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        createdBy = #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="creationdate != null" >
+        creationDate = #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyby != null" >
+        modifyBy = #{modifyby,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询所有角色 -->
+  <select id="queryAll" resultMap="roleMap">
+     select * from smbms_role
+  </select>
+ 
+</mapper>

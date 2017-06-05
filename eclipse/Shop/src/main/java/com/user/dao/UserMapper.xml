@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.user.dao.UserMapper" >
+
+   <resultMap id="roleMap" type="com.role.entity.Role" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="roleCode" property="rolecode" jdbcType="VARCHAR" />
+    <result column="roleName" property="rolename" jdbcType="VARCHAR" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="creationDate" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="BIGINT" />
+    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+   </resultMap>
+
+  <resultMap id="userMap" type="User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userCode" property="usercode" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="userPassword" property="userpassword" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="userRole" property="userrole" jdbcType="BIGINT" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="creationDate" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="BIGINT" />
+    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+    <!-- 配置一对一关联 -->
+    <association property="role" javaType="com.role.entity.Role" resultMap="roleMap"/>
+  </resultMap>
+  
+  <!-- 定义字段的引用模板 -->
+  <sql id="user" >
+    id, userCode, userName, userPassword, gender, birthday, phone, address, userRole, 
+    createdBy, creationDate, modifyBy, modifyDate
+  </sql>
+  
+  <!-- 分页查询所有 -->
+  <select id="queryAll" resultMap="userMap" parameterType="map">
+      select u.*,r.* from smbms_user u right join smbms_role r on u.userRole=r.id 
+      limit #{from},#{pageSize}
+  </select>
+  
+  <!-- 查询总记录数 -->
+  <select id="count" resultType="int">
+     select count(1) from smbms_user
+  </select>
+  
+  <!-- 根据ID删除 -->
+  <delete id="deleteUser" parameterType="int" >
+    delete from smbms_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 保存用户 -->
+  <insert id="saveUser" parameterType="User" >
+    insert into smbms_user (userCode, userName, 
+      userPassword, gender, birthday, 
+      phone, address, userRole, 
+      createdBy, creationDate, modifyBy, 
+      modifyDate)
+    values (#{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{userpassword,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, 
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{userrole,jdbcType=BIGINT}, 
+      #{createdby,jdbcType=BIGINT}, #{creationdate,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=BIGINT}, 
+      #{modifydate,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <!-- 更新用户信息 -->
+  <update id="updateUser" parameterType="User" >
+    update smbms_user
+    <set >
+      <if test="usercode != null" >
+        userCode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null" >
+        userPassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="userrole != null" >
+        userRole = #{userrole,jdbcType=BIGINT},
+      </if>
+      <if test="createdby != null" >
+        createdBy = #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="creationdate != null" >
+        creationDate = #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyby != null" >
+        modifyBy = #{modifyby,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userName=#{username}
+  </update>
+  
+  <!-- 用户登录 -->
+  <select id="login" parameterType="User" resultMap="userMap">
+     select u.*,r.* from smbms_user u right join smbms_role r on u.userRole=r.id 
+     where userCode=#{usercode} and userPassword=#{userpassword}
+  </select>
+  
+  <!-- 根据用户名和角色查询 -->
+  <select id="queryByNameAndRole" parameterType="map" resultMap="userMap">
+    select u.*,r.* from smbms_user u right join smbms_role r on u.userRole=r.id 
+    <where>
+        <if test="username!=null and username!=''">and u.userName=#{username}</if>
+        <if test="rolename!=null and rolename!=''">and r.roleName=#{rolename}</if>
+    </where>
+  </select>
+  
+  <!-- 根据ID查询 -->
+  <select id="queryById" parameterType="int" resultMap="userMap">
+     select u.*,r.* from smbms_user u right join smbms_role r on u.userRole=r.id 
+     where u.id=#{id}
+  </select>
+  
+  <!-- 验证用户姓名和密码 -->
+  <select id="validate" parameterType="User" resultMap="userMap">
+     select * from smbms_user 
+     where userName=#{username} and userPassword=#{userpassword}
+  </select>
+  
+  <!-- 修改密码 -->
+  <update id="updatepwd" parameterType="map">
+      update smbms_user set userPassword=#{password}
+      where userName=#{username}
+  </update>
+  
+  
+</mapper>

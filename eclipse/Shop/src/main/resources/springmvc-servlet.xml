@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+        <mvc:annotation-driven>
+             <!-- 配置fastjosn乱码问题 -->
+          <mvc:message-converters>
+            <!-- 配置springmvc字符集消息转换器-->
+   			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+   				<property name="supportedMediaTypes">
+   					<list>
+   						<value>application/json;charset=UTF-8</value>
+   					</list>
+   				</property>
+   			</bean>
+   			<!-- 配置fastJson的消息转换器-->
+   			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+   				<property name="supportedMediaTypes">
+   					<list>
+   						<value>text/html;charset=UTF-8</value>
+   						<value>application/json</value>
+   					</list>
+   				</property>
+   				<!-- 配置fastJson的日期转换格式 -->
+   				<property name="features">
+   					<list>
+   						<value>WriteDateUseDateFormat</value>
+   					</list>
+   				</property>
+   			</bean>
+   		  </mvc:message-converters>
+        </mvc:annotation-driven>
+        
+        
+        <!-- 扫描控制器层组件 -->
+        <context:component-scan base-package="com.*.controller"/>
+        
+        <!-- 在jsp中引入静态资源 -->
+       <!--  <mvc:resources location="/js/" mapping="/js/**"/> -->
+        <mvc:default-servlet-handler/>
+        
+        
+      <!-- 配置多视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="favorParameter" value="true"/> 
+        <property name="defaultContentType" value="text/html" /> 
+        <property name="mediaTypes">
+            <map>
+            	<entry key="html" value="text/html; charset=UTF-8"/>
+                <entry key="json" value="application/json; charset=UTF-8"/>
+                <entry key="xml" value="application/xml; charset=UTF-8"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+				   <property name="prefix" value="/"/>
+				   <property name="suffix" value=".jsp"/>
+			   </bean>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 配置文件上传  MultipartResolver-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="500000000"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+        
+</beans>
