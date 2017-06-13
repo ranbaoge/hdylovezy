@@ -1,0 +1,4 @@
+2017-06-12 08:36:26,280 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 2844 (D:\tools\eclipse\SpringbootDemo01\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo01)
+2017-06-12 08:36:26,354 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-12 08:36:26,355 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-12 08:36:34,770 INFO (StartupInfoLogger.java:57)- Started Application in 9.981 seconds (JVM running for 12.117)

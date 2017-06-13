@@ -1,0 +1,11 @@
+2017-06-09 20:53:39,833 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 7480 (D:\tools\eclipse\SpringbootDemo01\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo01)
+2017-06-09 20:53:39,836 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-09 20:53:39,837 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-09 20:53:44,034 INFO (StartupInfoLogger.java:57)- Started Application in 4.619 seconds (JVM running for 5.187)
+2017-06-09 20:55:54,429 DEBUG (Example.java:24)- 访问index,参数name=admin
+2017-06-09 20:56:24,042 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 3768 (D:\tools\eclipse\SpringbootDemo01\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo01)
+2017-06-09 20:56:24,046 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-09 20:56:24,046 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-09 20:56:27,960 INFO (StartupInfoLogger.java:57)- Started Application in 4.325 seconds (JVM running for 4.915)
+2017-06-09 20:56:28,297 DEBUG (Example.java:24)- 访问index,参数name=admin
+2017-06-09 20:56:55,237 DEBUG (Example.java:18)- 访问home
