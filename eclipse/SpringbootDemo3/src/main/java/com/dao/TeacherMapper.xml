@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.TeacherDao">
+    <resultMap type="com.entity.Teacher" id="teacherMap">
+       <id column="tid" property="id" javaType="java.lang.Integer"/>
+       <result column="tname" property="name" javaType="java.lang.String"/>
+    </resultMap>
+
+   <select id="queryAll" resultMap="teacherMap">
+       select * from t_teacher
+   </select>
+   
+   <insert id="save" parameterType="com.entity.Teacher">
+      insert into t_teacher(tname) values(#{name})
+   </insert>
+   
+   <update id="update" parameterType="com.entity.Teacher">
+      update t_teacher set tname=#{name} where tid=#{id}
+   </update>
+   
+   <delete id="delete" parameterType="int">
+      delete from t_teacher where tid=#{id}
+   </delete>
+   
+   
+</mapper>

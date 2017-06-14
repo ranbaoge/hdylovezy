@@ -1,0 +1,27 @@
+2017-06-13 18:44:57,237 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 2792 (D:\tools\eclipse\SpringbootDemo2\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo2)
+2017-06-13 18:44:57,244 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-13 18:44:57,246 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-13 18:46:23,517 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 5184 (D:\tools\eclipse\SpringbootDemo2\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo2)
+2017-06-13 18:46:23,520 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-13 18:46:23,521 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-13 18:47:06,607 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 4180 (D:\tools\eclipse\SpringbootDemo2\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo2)
+2017-06-13 18:47:06,610 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-13 18:47:06,610 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-13 18:53:33,191 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 5516 (D:\tools\eclipse\SpringbootDemo2\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo2)
+2017-06-13 18:53:33,195 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-13 18:53:33,196 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-13 18:55:04,095 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 5948 (D:\tools\eclipse\SpringbootDemo2\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo2)
+2017-06-13 18:55:04,099 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-13 18:55:04,100 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-13 18:58:13,319 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 4960 (D:\tools\eclipse\SpringbootDemo2\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo2)
+2017-06-13 18:58:13,323 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-13 18:58:13,324 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-13 18:59:45,092 INFO (StartupInfoLogger.java:48)- Starting Application on huangdaye with PID 5968 (D:\tools\eclipse\SpringbootDemo2\target\classes started by huangdaye in D:\tools\eclipse\SpringbootDemo2)
+2017-06-13 18:59:45,096 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.4.0.BUILD-SNAPSHOT, Spring v4.3.2.RELEASE
+2017-06-13 18:59:45,097 INFO (SpringApplication.java:659)- No active profile set, falling back to default profiles: default
+2017-06-13 18:59:50,677 INFO (StartupInfoLogger.java:57)- Started Application in 6.048 seconds (JVM running for 6.63)
+2017-06-13 18:59:50,677 INFO (Application.java:57)- SpringBoot 开始启动
+2017-06-13 19:00:50,452 DEBUG (Example.java:29)- 访问home
+2017-06-13 19:00:51,778 INFO (Example.java:32)- Teacher [id=1, name=王老师]
+2017-06-13 19:00:51,779 INFO (Example.java:32)- Teacher [id=2, name=高老师]
+2017-06-13 19:00:51,779 INFO (Example.java:32)- Teacher [id=3, name=李老师]
