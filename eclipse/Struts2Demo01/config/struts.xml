@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+  <!-- struts2基于包管理，继承默认的struts-default -->
+   <package name="user" namespace="/" extends="struts-default">
+      <!-- 接收请求并跳转，class表示找到相应的控制器类,执行相应的方法 -->
+      <action name="hello" class="com.action.UserAction">
+           <!-- 默认name为success -->
+           <result>index.jsp</result>
+      </action>
+   
+   </package>
+
+</struts>
