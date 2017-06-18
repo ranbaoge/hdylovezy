@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.entity">
+    <class name="User" table="t_user">
+        <id name="id" column="t_id" type="java.lang.Integer">
+            <generator class="sequence" >
+            	<param name="sequence">seq_user</param>
+            </generator>
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" length="50" not-null="true" />
+        </property>
+        
+        <many-to-one name="idCard" unique="true" class="IdCard"/>
+    </class>
+   
+</hibernate-mapping>
