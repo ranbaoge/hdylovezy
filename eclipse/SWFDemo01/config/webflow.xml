@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/webflow-config
+           http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.4.xsd">
+           
+        
+        
+        <webflow:flow-executor id="flowExecutor"/>   
+        
+        <webflow:flow-registry id="flowRegistry" flow-builder-services="flowBuilderServices">
+             <!-- 注册流程组件 -->
+             <webflow:flow-location path="/WEB-INF/flows/user.xml" id="user"/>        
+        </webflow:flow-registry>
+        
+       <!-- 配置webflow视图解析 -->
+       <webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="viewFactoryCreator"/>
+       
+       <bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+          <property name="viewResolvers" ref="viewResolver"/>
+       </bean>
+
+</beans>
