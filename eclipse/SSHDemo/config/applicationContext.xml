@@ -91,7 +91,7 @@
     </bean>
     
     <!-- 配置Action层 -->
-    <bean id="userAction" class="com.action.UserAction">
+    <bean id="userAction" class="com.action.UserAction" scope="prototype">
        <property name="userService" ref="userService"/>
     </bean>
 </beans>
