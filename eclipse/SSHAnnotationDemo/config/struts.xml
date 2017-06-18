@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+   
+    <!-- 修改扩展名 -->
+    <constant name="struts.action.extension" value="do,action"/>
+    <!-- 修改struts标签的固定ui界面 -->
+    <constant name="struts.ui.theme" value="simple"></constant>
+    <!-- 将对象交给spring管理 -->  
+    <constant name="struts.objectFactory" value="spring" />
+    
+    <!-- 设置ACTION -->
+    <package name="user" namespace="/" extends="struts-default">
+           <action name="user_*" class="userAction" method="{1}">
+                 <result name="success">/show.jsp</result>
+           </action>
+           
+    </package>
+</struts>
