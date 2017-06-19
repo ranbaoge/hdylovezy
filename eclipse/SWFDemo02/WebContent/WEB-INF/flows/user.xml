@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+                          
+       
+      <view-state id="viewUser" view="viewUser">
+        <!-- 要在 viewUser 页面中显示信息，只需在 view-state 元素的 on-render 切入点调用 userService 的  
+         getUserList方法，并将所得结果保存到 viewScope的users变量中即可 -->  
+         <!-- userService 的 getUserList 方法所得的结果会存放在 viewScope中名为 users的变量中， jsp 页面的代码可直接访问该变量。 -->  
+         <!-- 通过 evaluate 元素来指定要处理的业务逻辑 -->  
+         <on-render>
+             <evaluate expression="userService.getUserList()" result="viewScope.users"/>
+         </on-render>
+         <transition on="submit" to="viewShow"/>
+      </view-state> 
+       
+     <view-state id="viewShow" view="viewShow">
+        <transition on="confirm" to="viewIndex"/>
+     </view-state>
+       
+     <view-state id="viewIndex" view="viewIndex">
+     </view-state>
+     
+                         
+</flow>

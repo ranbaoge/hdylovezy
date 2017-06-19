@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+    <context:annotation-config/>
+    <context:component-scan base-package="com.service"/>
+    
+    <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>   
+        <property name="prefix" value="/"/>  
+        <property name="suffix" value=".jsp"/> 
+    </bean>
+    
+    <bean id="viewMappings" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <!-- /user.do 请求由 flowController 来处理 -->
+    <property name="mappings"> 
+      <value>/user.do=flowController</value> 
+    </property>
+    <property name="defaultHandler"> 
+    <!-- UrlFilenameViewController 会将 "/index" 这样的请求映射成名为 "index" 的视图 -->
+       <bean class="org.springframework.web.servlet.mvc.UrlFilenameViewController" /> 
+    </property>
+   </bean> 
+  
+  
+  <bean id="flowController" class="org.springframework.webflow.mvc.servlet.FlowController"> 
+    <property name="flowExecutor" ref="flowExecutor"/> 
+  </bean>
+
+ <import resource="webflow.xml"/>
+ 
+</beans>
