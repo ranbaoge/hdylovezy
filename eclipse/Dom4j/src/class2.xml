@@ -1,0 +1,21 @@
+
+<classs> 
+  <class name="hello,dom4j"> 
+    <student>张三</student>  
+    <student>李四</student>  
+    <student>王五</student>  
+    <hr>您好啊</hr>
+  </class>  
+  <class id="c2"> 
+    <teacher>李老师</teacher>  
+    <student>Leonhardt</student>  
+    <student>Korin</student>  
+    <student>Sally</student> 
+  </class>  
+  <class id="c3"> 
+    <teacher>高老师</teacher>  
+    <student>One</student>  
+    <student>Two</student>  
+    <student>Three</student> 
+  </class> 
+</classs>

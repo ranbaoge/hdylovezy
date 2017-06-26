@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classs>
+     <class id="c1">
+         <teacher>王老师</teacher>
+         <student>张三</student>
+         <student>李四</student>
+         <student>王五</student>
+     </class>
+     
+     <class id="c2">
+         <teacher>李老师</teacher>
+         <student>Leonhardt</student>
+         <student>Korin</student>
+         <student>Sally</student>
+     </class>
+     
+     <class id="c3">
+         <teacher>高老师</teacher>
+         <student>One</student>
+         <student>Two</student>
+         <student>Three</student>
+     </class>
+
+</classs>
