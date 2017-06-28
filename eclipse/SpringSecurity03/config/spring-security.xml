@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+	
+	
+	<http auto-config="true" use-expressions="true">
+	   <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+	   <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+	   <intercept-url pattern="/home/**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')"/>
+	</http>
+	
+	<!-- 进行用户登录管理 -->
+	<authentication-manager>
+	    <authentication-provider>
+	           <!-- 登录用户认证 -->
+	           <!-- <user-service>
+	                 <user name="leo" password="123" authorities="ROLE_ADMIN"/>
+	                 <user name="wangwu" password="123456" authorities="ROLE_USER"/>
+	           </user-service> -->
+	           <!-- 使用jdbc进行认证 -->
+	           <jdbc-user-service data-source-ref="dataSource"/>
+	    </authentication-provider>
+	</authentication-manager>
+	
+	<!-- 将数据库的参数配置到properties文件中 -->
+	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <beans:property name="locations" value="classpath:db.properties"/>
+	</beans:bean>
+	
+	<!-- 数据源配置 -->
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	     <beans:property name="driverClassName" value="${driver}"/>
+	     <beans:property name="url" value="${url}"/>
+	     <beans:property name="username" value="${username}"/>
+	     <beans:property name="password" value="${password}"/>
+	</beans:bean>
+	
+	
+</beans:beans>
