@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+	
+	<!-- 放开对以下路径的验证 -->
+	<http pattern="/hdy" security="none"></http>
+	<http pattern="/hello**" security="none"></http>
+	
+	
+	
+	<http auto-config="true" use-expressions="true">
+	   <intercept-url pattern="**" access="hasRole('ROLE_USER')"/>
+	   <form-login login-page="/hdy" username-parameter="username" password-parameter="password"
+	   authentication-success-forward-url="/hello/hdy.do"
+	    authentication-failure-url="/login.jsp" login-processing-url="/hello/hdy.do"/>
+	   <csrf disabled="true"/>
+
+	<!-- remember me登录 -->
+	<!-- 加入remember-me支持后，首次成功登录后浏览器会接收到服务器发送的名为remember-me的cookie。 
+	        在没有退出登录的前提下关闭浏览器之后再次打开浏览器访问需要登录的页面，则浏览器会将该cookie附加到请求信息中， 
+		服务器对该cookie的内容进行检测，验证通过后不再要求浏览器进行登录。 -->
+	<!-- remember me自动登录 key:一个应用程序标识符。如果不指定则Spring Security自动生成一个随机数。
+	     remember-me-cookie:Spring Security为浏览器产生的remember-me功能的cookie的名字。 如果不指定，则为remember-me。 
+		remember-me-parameter：在登录表单中用于指示是否使用”记住我“功能的标识字段的名字。 
+		如果不指定，则为remember-me。 -->
+	   <remember-me key="springsecurity_remember_me_key" 
+	   remember-me-cookie="springsecurity_remember_me_cookie"
+	   remember-me-parameter="springsecurity_remember_me_parameter"/>
+	</http>
+	
+	<!-- 进行用户登录管理 -->
+	<authentication-manager>
+	    <authentication-provider>
+	           <!-- 登录用户认证 -->
+	           <user-service>
+	                 <user name="leo" password="123" authorities="ROLE_ADMIN,ROLE_USER"/>
+	                 <user name="korin" password="123" authorities="ROLE_USER"/>
+	           </user-service>
+	    </authentication-provider>
+	</authentication-manager>
+	
+	
+	
+</beans:beans>
