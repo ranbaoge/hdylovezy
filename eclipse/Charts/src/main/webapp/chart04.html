@@ -2,17 +2,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>显示3D柱状图</title>
+<title>显示2D饼图</title>
    <script type="text/javascript" src="js/jquery.js"></script>
    <script type="text/javascript" src="FusionCharts/FusionCharts.js"></script>
-   <!-- 显示3D柱状图 -->
+   <!-- 显示2D饼图 -->
    <script type="text/javascript">
     $(function(){
     	
-    	//发送Ajax请求获取X-Y坐标图数据信息
-    	$.getJSON("charts",null,fun);
+    	//发送Ajax请求获取饼图数据信息
+    	$.getJSON("pieCharts",null,fun);
     	function fun(data){
-    		var myChart = new FusionCharts("FusionCharts/Column3D.swf", "myChartId", "1000", "800", "0", "1");
+    		var myChart = new FusionCharts("FusionCharts/Pie2D.swf", "myChartId", "800", "800", "0", "1");
     		myChart.setJSONData(data);
     		myChart.render("chartContainer");
     	}

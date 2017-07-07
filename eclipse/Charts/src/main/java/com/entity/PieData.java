@@ -18,6 +18,12 @@ public class PieData {
 		this.color = color;
 		this.issliced = issliced;
 	}
+	
+	public PieData(String label, String value) {
+		super();
+		this.label = label;
+		this.value = value;
+	}
 	public String getLabel() {
 		return label;
 	}

@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.dao.BookDao;
 import com.entity.Book;
-import com.entity.Chart;
-import com.entity.Data;
 import com.entity.PieChart;
 import com.entity.PieData;
 import com.service.BookService;
@@ -66,30 +64,6 @@ public class BookServiceImpl implements BookService{
 		return bookDao.countType();
 	}
 
-	
-	@Override
-	public Map<String, Object> charts() {
-		// TODO Auto-generated method stub
-		//图表描述
-		Chart chart=new Chart("书籍种类描述", "书籍类型", "类型值", "");
-		//柱状图数据
-		List<Map<String, Object>> list=countType();
-		List<Data> datas=new ArrayList<>();
-		//遍历封装数据
-		for (int i = 0; i <list.size(); i++) {
-			Data data=new Data();
-			data.setLabel((String) list.get(i).get("c_name"));
-			//获取类型记录数
-			Long value=(Long) list.get(i).get("count(1)");
-			data.setValue(value.toString());
-			datas.add(data);
-		}
-		
-		Map<String, Object> mapChart=new HashMap<>();
-		mapChart.put("chart", chart);
-		mapChart.put("data", datas);
-		return mapChart;
-	}
 
 	@Override
 	public Map<String, Object> pieCharts() {
@@ -98,7 +72,7 @@ public class BookServiceImpl implements BookService{
 		//饼图内容描述
 		PieChart pieChart=new PieChart("1", "书籍类型分布图", "E1E1E1,FFFFFF", "0", "1", "0", "190", "35", "60", "80", "30");
 		
-		//柱状图数据
+		//饼图数据
 		List<Map<String, Object>> list=countType();
 		List<PieData> datas=new ArrayList<>();
 		
@@ -109,7 +83,6 @@ public class BookServiceImpl implements BookService{
 			Long value=(Long) list.get(i).get("count(1)");
 			data.setLabel(label);
 			data.setValue(value.toString());
-			data.setColor("2675B4");
 			if(i==0){
 				data.setIssliced("1");
 			}
@@ -118,6 +91,32 @@ public class BookServiceImpl implements BookService{
 		//将数据封装到map集合
 		Map<String, Object> map=new HashMap<>();
 		map.put("chart", pieChart);
+		map.put("data", datas);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> Charts() {
+		// TODO Auto-generated method stub
+		//X-Y坐标图内容显示
+		PieChart chart=new PieChart("书籍类型分布图", "书籍类型", "类型值", "");
+		
+		//X-Y坐标图数据
+		List<Map<String, Object>> list=countType();
+		List<PieData> datas=new ArrayList<>();
+		
+		//遍历封装数据
+		for (int i = 0; i <list.size(); i++) {
+			PieData data=new PieData();
+			Long value=(Long) list.get(i).get("count(1)");
+			data.setValue(value.toString());
+			data.setLabel((String) list.get(i).get("c_name"));
+			datas.add(data);
+		}
+		
+		//将描述和数据存放在Map集合
+		Map<String, Object> map=new HashMap<>();
+		map.put("chart", chart);
 		map.put("data", datas);
 		return map;
 	}

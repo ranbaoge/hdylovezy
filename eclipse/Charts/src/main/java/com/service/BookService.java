@@ -20,14 +20,14 @@ public interface BookService {
 	List<Map<String, Object>> countType();
 	
 	/**
-	 * 柱状图内容显示
-	 * @return
-	 */
-	Map<String, Object> charts();
-	
-	/**
 	 * 饼图内容显示
 	 * @return
 	 */
 	Map<String, Object> pieCharts();
+	
+	/**
+	 * 柱状图内容显示
+	 * @return
+	 */
+	Map<String, Object> Charts();
 }

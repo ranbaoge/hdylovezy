@@ -57,28 +57,30 @@ public class BookController {
 	
 
 	/**
-	 * 柱状图内容显示
+	 * 饼图内容显示
 	 * @return
 	 */
-	@RequestMapping(value="charts",produces="application/json;charset=utf-8")
-	@ResponseBody
-	public Object charts(){
-		
-		Map<String, Object> charts=bookService.charts();
-		
-		String json=JSON.toJSONString(charts, true);
-		System.out.println(json);
-		return json;
-	}
-	
 	@RequestMapping(value="pieCharts",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public Object pieCharts(){
-		Map<String, Object> charts=bookService.charts();
+		Map<String, Object> charts=bookService.pieCharts();
 		String json=JSON.toJSONString(charts,true);
 		System.out.println(json);
 		return json;
 	}
 	
+	
+	/**
+	 * X-Y坐标图内容显示
+	 * @return
+	 */
+	@RequestMapping(value="charts",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public Object charts(){
+		Map<String, Object> charts=bookService.Charts();
+		String json=JSON.toJSONString(charts,true);
+		System.out.println(json);
+		return json;
+	}
 	
 }

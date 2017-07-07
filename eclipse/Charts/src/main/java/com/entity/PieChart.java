@@ -24,6 +24,13 @@ public class PieChart {
 	private String plotfillalpha;
 	//饼图立起来角度
 	private String pieyscale;
+	//X轴的描述
+	private String xAxisName;
+	//Y轴的描述
+	private String yAxisName;
+	//数字前缀
+	private String numberPrefix;
+	
 	public PieChart() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -43,6 +50,14 @@ public class PieChart {
 		this.pieinnerfacealpha = pieinnerfacealpha;
 		this.plotfillalpha = plotfillalpha;
 		this.pieyscale = pieyscale;
+	}
+	
+	public PieChart(String caption, String xAxisName, String yAxisName, String numberPrefix) {
+		super();
+		this.caption = caption;
+		this.xAxisName = xAxisName;
+		this.yAxisName = yAxisName;
+		this.numberPrefix = numberPrefix;
 	}
 	public String getShowborder() {
 		return showborder;
@@ -110,14 +125,23 @@ public class PieChart {
 	public void setPieyscale(String pieyscale) {
 		this.pieyscale = pieyscale;
 	}
-	@Override
-	public String toString() {
-		return "PieChart [showborder=" + showborder + ", caption=" + caption + ", bgcolor=" + bgcolor + ", showvalues="
-				+ showvalues + ", showlegend=" + showlegend + ", showlabels=" + showlabels + ", startingangle="
-				+ startingangle + ", slicingdistance=" + slicingdistance + ", pieinnerfacealpha=" + pieinnerfacealpha
-				+ ", plotfillalpha=" + plotfillalpha + ", pieyscale=" + pieyscale + "]";
+	public String getxAxisName() {
+		return xAxisName;
 	}
-	
-	
+	public void setxAxisName(String xAxisName) {
+		this.xAxisName = xAxisName;
+	}
+	public String getyAxisName() {
+		return yAxisName;
+	}
+	public void setyAxisName(String yAxisName) {
+		this.yAxisName = yAxisName;
+	}
+	public String getNumberPrefix() {
+		return numberPrefix;
+	}
+	public void setNumberPrefix(String numberPrefix) {
+		this.numberPrefix = numberPrefix;
+	}
 	
 }
