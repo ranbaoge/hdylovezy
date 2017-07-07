@@ -50,7 +50,9 @@
           </tr>
         </c:forEach>
         <tr>
-           <td colspan="7"><a href="ExcelServlet?flag=excel">导出Excel表</a></td>
+           <td colspan="7"><a href="ExcelServlet?flag=excel">导出Excel表</a>&nbsp;&nbsp;
+           <a href="ExcelServlet?flag=pdf">导出PDF文件</a>
+           </td>
         </tr>
     </table>
 </body>
