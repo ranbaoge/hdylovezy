@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.BookDao">
+
+    <resultMap type="Category" id="categoryMap">
+       <id property="id" column="c_id" javaType="java.lang.Integer"/>
+       <result property="name" column="c_name" javaType="java.lang.String"/>
+    </resultMap>
+
+    <resultMap type="Book" id="bookMap">
+        <id property="id" column="b_id" javaType="java.lang.Integer"/>
+        <result property="name" column="b_name" javaType="java.lang.String"/>
+        <result property="author" column="b_author" javaType="java.lang.String"/>
+        <result property="publisher" column="b_publisher" javaType="java.lang.String"/>
+        <result property="publishDate" column="b_publishDate" javaType="java.util.Date"/>
+        <result property="price" column="b_price" javaType="java.lang.Float"/>
+        <result property="cid" column="cid" javaType="java.lang.Integer"/>
+        <!-- 配置一对一关联映射 -->
+        <association property="category" javaType="Category" resultMap="categoryMap"/>
+    </resultMap>
+    
+    
+    <insert id="saveBook" parameterType="Book">
+       insert into t_book(b_name,b_author,b_publisher,b_publishDate,b_price,cid) 
+       values(#{name},#{author},#{publisher},#{publishDate},#{price},#{cid})
+    </insert>
+    
+    
+    <update id="updateBook" parameterType="Book">
+       update t_book 
+       <set>
+          <if test="name!=null and name!=''">b_name=#{name}</if>
+          <if test="author!=null and author!=''">b_author=#{author}</if>
+          <if test="publisher!=null and publisher!=''">b_publisher=#{publisher}</if>
+          <if test="publishDate!=null">b_publishDate=#{publishDate}</if>
+          <if test="price!=null">b_price=#{price}</if>
+          <if test="cid!=null">cid=#{cid}</if>
+       </set>
+       where b_id=#{id}
+    </update>
+    
+    <delete id="deleteById" parameterType="int">
+       delete from t_book where b_id=#{id}
+    </delete>
+    
+    <select id="count" resultType="int">
+      select count(1) from t_book
+    </select>
+    
+    <select id="queryByPage" parameterType="map" resultMap="bookMap">
+       select b.*,c.* from t_book b left join t_category c on b.cid=c.c_id  
+       limit
+       <if test="from!=null">#{from},#{pageSize}</if>
+    </select>
+    
+    <!-- 根据类型查询相应的个数 -->
+    <select id="countType" resultType="map">
+       select count(1),c.* from t_category c LEFT JOIN t_book b on b.cid=c.c_id GROUP BY c.c_id
+    </select>
+
+</mapper>
