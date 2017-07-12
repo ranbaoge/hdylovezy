@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>曲线数据图</title>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/highcharts.js"></script>
+<script type="text/javascript" src="../js/highcharts-3d.js"></script>
+<script type="text/javascript">
+     $(function(){
+    	$("#sub").click(function(){
+    		var chart=$("#chart").val();
+    		//发送Ajax请求
+        	$.getJSON("../"+chart,null,fun);
+        	function fun(data){
+        	   $("#container").highcharts(data);
+        	}
+    	});
+    	
+     });
+</script>
+</head>
+<body>
+     <select id="chart">
+          <option value="chart08">3D柱状图</option>
+          <option value="chart09">3D饼图</option>
+     </select> &nbsp;
+     <input type="button" id="sub" value="查询">
+     
+     
+     <div id="container" style="width: 900px; height: 600px; margin: 0 auto"></div>
+     
+     
+</body>
+
+</html>

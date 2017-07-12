@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>曲线数据图</title>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/highcharts.js"></script>
+<script type="text/javascript">
+     $(function(){
+    	$("#sub").click(function(){
+    		var chart=$("#chart").val();
+    		//发送Ajax请求
+        	$.getJSON("../"+chart,null,fun);
+        	function fun(data){
+        		if(chart=="chart05"){
+        			 Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+        			      return {
+        			         radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+        			         stops: [
+        			            [0, color],
+        			            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+        			         ]
+        			      };
+        			   });
+        		  $("#container").highcharts(data);
+        		}else{
+        		  $("#container").highcharts(data);
+        		}
+        	}
+    	});
+     });
+</script>
+</head>
+<body>
+     <select id="chart">
+          <option value="chart01">曲线图</option>
+          <option value="chart02">区域图</option>
+          <option value="chart03">条形图</option>
+          <option value="chart04">柱状图</option>
+          <option value="chart05">饼图</option>
+          <option value="chart06">散点图</option>
+          <option value="chart07">组合图</option>
+     </select> &nbsp;
+     <input type="button" id="sub" value="查询">
+     <div id="container" style="width: 900px; height: 600px; margin: 0 auto"></div>
+</body>
+</html>
